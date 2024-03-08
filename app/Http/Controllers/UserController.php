@@ -17,8 +17,6 @@ class UserController extends BaseController
         $image = Banner::orderBy('id', 'DESC')->first();
 
         $featuredata = Products::joined_data()->whereRaw('FIND_IN_SET("1", show_in)')->get();
-
-        // dd($productdata);
         
         return view('front.index',compact('image','featuredata'));
     }
@@ -41,5 +39,29 @@ class UserController extends BaseController
         // ]);
 
         return view('front.product-details');
+    }
+
+    function product_section(Request $request){
+        
+        $request->validate([
+            'data' => 'required'
+        ]);
+
+        if($request->data == 1)
+        {
+            $data = Products::joined_data()->whereRaw('FIND_IN_SET("1", show_in)')->get();
+
+            echo json_encode($data);
+        }elseif ($request->data == 2) {
+            $data = Products::joined_data()->whereRaw('FIND_IN_SET("2", show_in)')->get();
+
+            echo json_encode($data);
+        }elseif ($request->data == 3) {
+            $data = Products::joined_data()->whereRaw('FIND_IN_SET("3", show_in)')->get();
+
+            echo json_encode($data);
+        }
+        
+
     }
 }

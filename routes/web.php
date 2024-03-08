@@ -22,6 +22,8 @@ Route::get('contact' , [UserController::class, 'contact'])->name('front_contact'
 
 Route::get('details' , [UserController::class, 'product_details'])->name('product_details');
 
+Route::post('product-section' , [UserController::class, 'product_section'])->name('product.section');
+
 Route::group(['prefix'=>'admin','as'=>'admin.'],function(){
     require 'admin-login.php';
     Route::group(['middleware' => 'AdminAuth'], function(){

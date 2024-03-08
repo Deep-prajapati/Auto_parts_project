@@ -18,5 +18,6 @@ class BaseController extends Controller
 
         return view()->share( array('category' => $category , 'subcategory' => $subcategory));
     }
+    
 
 }

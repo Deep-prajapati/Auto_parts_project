@@ -20,7 +20,17 @@ Route::get('about' , [UserController::class, 'about'])->name('front_about');
 
 Route::get('contact' , [UserController::class, 'contact'])->name('front_contact');
 
-Route::get('details' , [UserController::class, 'product_details'])->name('product_details');
+//Route::get('details/{slug}' , [UserController::class, 'product_details'])->name('product_details');
+
+Route::get('details/{slug}' , [UserController::class, 'product_details'])->name('product_details');
+
+Route::post('abc' , [UserController::class, 'company_ajax'])->name('company_ajax');
+
+
+Route::post('def' , [UserController::class, 'model_ajax'])->name('model_ajax');
+
+Route::get('category_details' , [UserController::class, 'category_details'])->name('category_details');
+
 
 Route::post('product-section' , [UserController::class, 'product_section'])->name('product.section');
 

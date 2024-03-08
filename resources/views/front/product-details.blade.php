@@ -24,6 +24,12 @@
         </div>
         <div class="block-split">
             <div class="container">
+
+                 <!-- unserialize image -->
+                 <?php
+                    $unserilize_img = unserialize($slug->sub_image);
+                ?>
+
                 <div class="block-split__row row no-gutters">
                     <div class="block-split__item block-split__item-content col-auto">
                         <div class="product product--layout--full">
@@ -40,87 +46,46 @@
                                             </svg>
                                         </button>
                                         <div class="owl-carousel">
-                                            <!--
-            The data-width and data-height attributes must contain the size of a larger version
-            of the product image.
-
-            If you do not know the image size, you can remove the data-width and data-height
-            attribute, in which case the width and height will be obtained from the naturalWidth
-            and naturalHeight property of img.image__tag.
-            -->
-                                            <a class="image image--type--product" href="images/products/product-2-700x700.jpg" target="_blank" data-width="700" data-height="700">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-2-500x500.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <!--
-            The data-width and data-height attributes must contain the size of a larger version
-            of the product image.
-
-            If you do not know the image size, you can remove the data-width and data-height
-            attribute, in which case the width and height will be obtained from the naturalWidth
-            and naturalHeight property of img.image__tag.
-            -->
-                                            <a class="image image--type--product" href="images/products/product-1-700x700.jpg" target="_blank" data-width="700" data-height="700">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-1-500x500.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <!--
-            The data-width and data-height attributes must contain the size of a larger version
-            of the product image.
-
-            If you do not know the image size, you can remove the data-width and data-height
-            attribute, in which case the width and height will be obtained from the naturalWidth
-            and naturalHeight property of img.image__tag.
-            -->
-                                            <a class="image image--type--product" href="images/products/product-3-700x700.jpg" target="_blank" data-width="700" data-height="700">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-3-500x500.jpg" alt="">
-                                                </div>
-                                            </a>
-                                            <!--
-            The data-width and data-height attributes must contain the size of a larger version
-            of the product image.
-
-            If you do not know the image size, you can remove the data-width and data-height
-            attribute, in which case the width and height will be obtained from the naturalWidth
-            and naturalHeight property of img.image__tag.
-            -->
-                                            <a class="image image--type--product" href="images/products/product-4-700x700.jpg" target="_blank" data-width="700" data-height="700">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-4-500x500.jpg" alt="">
-                                                </div>
-                                            </a>
+                                             @if($slug->thumbnail)
+                                                <a class="image image--type--product" href="images/products/product-1-700x700.jpg" target="_blank" data-width="700" data-height="700">
+                                                    <div class="image__body">
+                                                        <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$slug->thumbnail}}" alt="">
+                                                    </div>
+                                                </a>
+                                            @endif
+                                            @foreach($unserilize_img as $value)
+                                                <a class="image image--type--product" href="images/products/product-4-700x700.jpg" target="_blank" data-width="700" data-height="700">
+                                                    <div class="image__body">
+                                                        <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value}}" alt="">
+                                                    </div>
+                                                </a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="product-gallery__thumbnails">
+
+                                        
+
                                         <div class="owl-carousel">
-                                            <div class="product-gallery__thumbnails-item image image--type--product">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-2-70x70.jpg" alt="">
+                                            @if($slug->thumbnail)
+                                                <div class="product-gallery__thumbnails-item image image--type--product">
+                                                    <div class="image__body">
+                                                        <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$slug->thumbnail}}" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-gallery__thumbnails-item image image--type--product">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-1-70x70.jpg" alt="">
+                                            @endif
+                                            @foreach($unserilize_img as $value)
+                                                <div class="product-gallery__thumbnails-item image image--type--product">
+                                                    <div class="image__body">
+                                                        <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value}}" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-gallery__thumbnails-item image image--type--product">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-3-70x70.jpg" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="product-gallery__thumbnails-item image image--type--product">
-                                                <div class="image__body">
-                                                    <img class="image__tag" src="images/products/product-4-70x70.jpg" alt="">
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                                 <div class="product__header">
-                                    <h1 class="product__title">Brandix Brake Kit BDX-750Z370-S</h1>
+                                    <h1 class="product__title">{{$slug->product_name}}</h1>
                                     <div class="product__subtitle">
                                         <div class="product__rating">
                                             <div class="product__rating-stars">
@@ -150,11 +115,12 @@
                                 </div>
                                 <div class="product__main">
                                     <div class="product__excerpt">
-                                        Many philosophical debates that began in ancient times are still debated today.
-                                        In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge.
+                                        <!-- Many philosophical debates that began in ancient times are still debated today.
+                                        In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. -->
+                                        {{$slug->short_dis}}
                                     </div>
                                     <div class="product__features">
-                                        <div class="product__features-title">Key Features:</div>
+                                        <!-- <div class="product__features-title">Key Features:</div>
                                         <ul>
                                             <li>Speed: <span>750 RPM</span></li>
                                             <li>Power Source: <span>Cordless-Electric</span></li>
@@ -164,7 +130,13 @@
                                         </ul>
                                         <div class="product__features-link">
                                             <a href="">See Full Specification</a>
-                                        </div>
+                                        </div> -->
+                                        <?php
+                                            $stringinsert = htmlspecialchars($slug->features);
+                                            $decode = htmlspecialchars_decode($stringinsert);
+                                        
+                                        ?>
+                                        {{$decode}}
                                     </div>
                                 </div>
                                 <div class="product__info">
@@ -173,7 +145,7 @@
                                             <div class="product__badge tag-badge tag-badge--sale">Sale</div>
                                             <div class="product__prices-stock">
                                                 <div class="product__prices">
-                                                    <div class="product__price product__price--current">$1,499.00</div>
+                                                    <div class="product__price product__price--current">${{$slug->price}}</div>
                                                 </div>
                                                 <div class="status-badge status-badge--style--success product__stock status-badge--has-text">
                                                     <div class="status-badge__body">
@@ -186,71 +158,17 @@
                                                 <table>
                                                     <tr>
                                                         <th>SKU</th>
-                                                        <td>201902-0057</td>
+                                                        <td>{{$slug->sku}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Brand</th>
-                                                        <td><a href="">Brandix</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Country</th>
-                                                        <td>Japan</td>
+                                                        <td><a href="">{{$slug->brand}}</a></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Vendor code</th>
                                                         <td>BDX-750Z370-S</td>
                                                     </tr>
                                                 </table>
-                                            </div>
-                                        </div>
-                                        <div class="product-form product__form">
-                                            <div class="product-form__body">
-                                                <div class="product-form__row">
-                                                    <div class="product-form__title">Material</div>
-                                                    <div class="product-form__control">
-                                                        <div class="input-radio-label">
-                                                            <div class="input-radio-label__list">
-                                                                <label class="input-radio-label__item">
-                                                                    <input type="radio" name="material" class="input-radio-label__input">
-                                                                    <span class="input-radio-label__title">Steel</span>
-                                                                </label>
-                                                                <label class="input-radio-label__item">
-                                                                    <input type="radio" name="material" class="input-radio-label__input">
-                                                                    <span class="input-radio-label__title">Aluminium</span>
-                                                                </label>
-                                                                <label class="input-radio-label__item">
-                                                                    <input type="radio" name="material" class="input-radio-label__input" disabled>
-                                                                    <span class="input-radio-label__title">Thorium</span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-form__row">
-                                                    <div class="product-form__title">Color</div>
-                                                    <div class="product-form__control">
-                                                        <div class="input-radio-color">
-                                                            <div class="input-radio-color__list">
-                                                                <label class="input-radio-color__item input-radio-color__item--white" style="color: #fff;" data-toggle="tooltip" title="White">
-                                                                    <input type="radio" name="color">
-                                                                    <span></span>
-                                                                </label>
-                                                                <label class="input-radio-color__item" style="color: #ffd333;" data-toggle="tooltip" title="Yellow">
-                                                                    <input type="radio" name="color">
-                                                                    <span></span>
-                                                                </label>
-                                                                <label class="input-radio-color__item" style="color: #ff4040;" data-toggle="tooltip" title="Red">
-                                                                    <input type="radio" name="color">
-                                                                    <span></span>
-                                                                </label>
-                                                                <label class="input-radio-color__item input-radio-color__item--disabled" style="color: #4080ff;" data-toggle="tooltip" title="Blue">
-                                                                    <input type="radio" name="color" disabled>
-                                                                    <span></span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="product__actions">
@@ -281,26 +199,7 @@
                                                 <span>Add to compare</span>
                                             </button>
                                         </div>
-                                        <div class="product__tags-and-share-links">
-                                            <div class="product__tags tags tags--sm">
-                                                <div class="tags__list">
-                                                    <a href="">Brake Kit</a>
-                                                    <a href="">Brandix</a>
-                                                    <a href="">Filter</a>
-                                                    <a href="">Bumper</a>
-                                                    <a href="">Transmission</a>
-                                                    <a href="">Hood</a>
-                                                </div>
-                                            </div>
-                                            <div class="product__share-links share-links">
-                                                <ul class="share-links__list">
-                                                    <li class="share-links__item share-links__item--type--like"><a href="">Like</a></li>
-                                                    <li class="share-links__item share-links__item--type--tweet"><a href="">Tweet</a></li>
-                                                    <li class="share-links__item share-links__item--type--pin"><a href="">Pin It</a></li>
-                                                    <li class="share-links__item share-links__item--type--counter"><a href="">4K</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="product__shop-features shop-features">
                                         <ul class="shop-features__list">
@@ -481,33 +380,13 @@
                                         <div class="product-tabs__pane product-tabs__pane--active" id="product-tab-description">
                                             <div class="typography">
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum, diam non iaculis finibus,
-                                                    ipsum arcu sollicitudin dolor, ut cursus sapien sem sed purus. Donec vitae fringilla tortor, sed
-                                                    fermentum nunc. Suspendisse sodales turpis dolor, at rutrum dolor tristique id. Quisque pellentesque
-                                                    ullamcorper felis, eget gravida mi elementum a. Maecenas consectetur volutpat ante, sit amet molestie
-                                                    urna luctus in. Nulla eget dolor semper urna malesuada dictum. Duis eleifend pellentesque dui et
-                                                    finibus. Pellentesque dapibus dignissim augue. Etiam odio est, sodales ac aliquam id, iaculis eget
-                                                    lacus. Aenean porta, ante vitae suscipit pulvinar, purus dui interdum tellus, sed dapibus mi mauris
-                                                    vitae tellus.
-                                                </p>
-                                                <h4>Etiam lacus lacus mollis in mattis</h4>
-                                                <p>
-                                                    Praesent mattis eget augue ac elementum. Maecenas vel ante ut enim mollis accumsan. Vestibulum vel
-                                                    eros at mi suscipit feugiat. Sed tortor purus, vulputate et eros a, rhoncus laoreet orci. Proin sapien
-                                                    neque, commodo at porta in, vehicula eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et
-                                                    ultrices posuere cubilia Curae; Curabitur porta vulputate augue, at sollicitudin nisl molestie eget.
-                                                </p>
-                                                <p>
-                                                    Nunc sollicitudin, nunc id accumsan semper, libero nunc aliquet nulla, nec pretium ipsum risus ac
-                                                    neque. Morbi eu facilisis purus. Quisque mi tortor, cursus in nulla ut, laoreet commodo quam.
-                                                    Pellentesque et ornare sapien. In ac est tempus urna tincidunt finibus. Integer erat ipsum, tristique
-                                                    ac lobortis sit amet, dapibus sit amet purus. Nam sed lorem nisi. Vestibulum ultrices tincidunt turpis,
-                                                    sit amet fringilla odio scelerisque non.
+                                                   {{$slug->discription}}
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="product-tabs__pane" id="product-tab-specification">
-                                            <div class="spec">
+                                            {{$slug->spacifications}}
+                                            <!-- <div class="spec">
                                                 <div class="spec__section">
                                                     <h4 class="spec__section-title">General</h4>
                                                     <div class="spec__row">
@@ -558,7 +437,7 @@
                                                     Information on technical characteristics, the delivery set, the country of manufacture and the appearance
                                                     of the goods is for reference only and is based on the latest information available at the time of publication.
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="product-tabs__pane" id="product-tab-reviews">
                                             <div class="reviews-view">
@@ -846,6 +725,8 @@
                                 <div class="block-products-carousel__carousel">
                                     <div class="block-products-carousel__carousel-loader"></div>
                                     <div class="owl-carousel">
+                                    @foreach($related_data as $value)
+
                                         <div class="block-products-carousel__column">
                                             <div class="block-products-carousel__cell">
                                                 <div class="product-card product-card--layout--grid">
@@ -870,10 +751,12 @@
                                                             </svg>
                                                         </button>
                                                     </div>
+
+
                                                     <div class="product-card__image">
                                                         <div class="image image--type--product">
                                                             <a href="product-full.html" class="image__body">
-                                                                <img class="image__tag" src="images/products/product-1-245x245.jpg" alt="">
+                                                                <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value->thumbnail}}" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="status-badge status-badge--style--success product-card__fit status-badge--has-icon status-badge--has-text">
@@ -888,7 +771,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-card__info">
-                                                        <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
+                                                        <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span>{{$value->sku}}</div>
                                                         <div class="product-card__name">
                                                             <div>
                                                                 <div class="product-card__badges">
@@ -896,7 +779,7 @@
                                                                     <div class="tag-badge tag-badge--new">new</div>
                                                                     <div class="tag-badge tag-badge--hot">hot</div>
                                                                 </div>
-                                                                <a href="product-full.html">Brandix Spark Plug Kit ASR-400</a>
+                                                                <a href="product-full.html">{{$value->product_name}}</a>
                                                             </div>
                                                         </div>
                                                         <div class="product-card__rating">
@@ -914,7 +797,7 @@
                                                     </div>
                                                     <div class="product-card__footer">
                                                         <div class="product-card__prices">
-                                                            <div class="product-card__price product-card__price--current">$19.00</div>
+                                                            <div class="product-card__price product-card__price--current">{{$value->price}}</div>
                                                         </div>
                                                         <button class="product-card__addtocart-icon" type="button" aria-label="Add to cart">
                                                             <svg width="20" height="20">
@@ -926,10 +809,12 @@
                                                             </svg>
                                                         </button>
                                                     </div>
+                                               
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="block-products-carousel__column">
+                                        @endforeach
+                                        <!-- <div class="block-products-carousel__column">
                                             <div class="block-products-carousel__cell">
                                                 <div class="product-card product-card--layout--grid">
                                                     <div class="product-card__actions-list">
@@ -953,6 +838,8 @@
                                                             </svg>
                                                         </button>
                                                     </div>
+
+
                                                     <div class="product-card__image">
                                                         <div class="image image--type--product">
                                                             <a href="product-full.html" class="image__body">
@@ -1637,7 +1524,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

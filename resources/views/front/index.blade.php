@@ -1,78 +1,67 @@
 @extends('front.tamplate')
 
 @section('main-section')
-<!-- site__body -->
-<div class="site__body">
-    <div class="block-finder block">
-        <div class="decor block-finder__decor decor--type--bottom">
-            <div class="decor__body">
-                <div class="decor__start"></div>
-                <div class="decor__end"></div>
-                <div class="decor__center"></div>
+        <!-- site__body -->
+        <div class="site__body">
+            <div class="block-finder block">
+                <div class="decor block-finder__decor decor--type--bottom">
+                    <div class="decor__body">
+                        <div class="decor__start"></div>
+                        <div class="decor__end"></div>
+                        <div class="decor__center"></div>
+                    </div>
+                </div>
+                <div class="block-finder__image" style="background-image: url('<?php echo url('front'); ?>/images/banners/{{$image->image_name}}');"></div>
+                <div class="block-finder__body container container--max--xl">
+                    <div class="block-finder__title">Find Parts For Your Vehicle</div>
+                    <div class="block-finder__subtitle">Over hundreds of brands and tens of thousands of parts</div>
+                    <form class="block-finder__form">
+                        <div class="block-finder__form-control block-finder__form-control--select">
+                            <select name="year" aria-label="Vehicle Year">
+                                <option value="none">Select Year</option>
+                                <option>2010</option>
+                                <option>2011</option>
+                                <option>2012</option>
+                                <option>2013</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                            </select>
+                        </div>
+                        <div class="block-finder__form-control block-finder__form-control--select">
+                            <select name="make" id="company" aria-label="Vehicle Make" disabled>
+                            <option value="none">Select Make</option>
+                                @foreach($company as $value)
+                                    <option value="{{$value->id}}">{{$value->company_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="block-finder__form-control block-finder__form-control--select">
+                            <select name="model" aria-label="Vehicle Model" name="model_id" id="model" disabled>
+                                <option value="none">Select Model</option>
+                            </select>
+                        </div>
+                        <div class="block-finder__form-control block-finder__form-control--select">
+                            <select name="engine" aria-label="Vehicle Engine"  id="engine" disabled>
+                            <option value="none">Select Engine</option>
+                               
+                            </select>
+                        </div>
+                        <button class="block-finder__form-control block-finder__form-control--button" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="block-finder__image" style="background-image: url('<?php echo url('front'); ?>/images/banners/{{$image->image_name}}');"></div>
-        <div class="block-finder__body container container--max--xl">
-            <div class="block-finder__title">Find Parts For Your Vehicle</div>
-            <div class="block-finder__subtitle">Over hundreds of brands and tens of thousands of parts</div>
-            <form class="block-finder__form">
-                <div class="block-finder__form-control block-finder__form-control--select">
-                    <select name="year" aria-label="Vehicle Year">
-                        <option value="none">Select Year</option>
-                        <option>2010</option>
-                        <option>2011</option>
-                        <option>2012</option>
-                        <option>2013</option>
-                        <option>2014</option>
-                        <option>2015</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
-                        <option>2020</option>
-                    </select>
-                </div>
-                <div class="block-finder__form-control block-finder__form-control--select">
-                    <select name="make" aria-label="Vehicle Make" disabled>
-                        <option value="none">Select Make</option>
-                        <option>Audi</option>
-                        <option>BMW</option>
-                        <option>Ferrari</option>
-                        <option>Ford</option>
-                        <option>KIA</option>
-                        <option>Nissan</option>
-                        <option>Tesla</option>
-                        <option>Toyota</option>
-                    </select>
-                </div>
-                <div class="block-finder__form-control block-finder__form-control--select">
-                    <select name="model" aria-label="Vehicle Model" disabled>
-                        <option value="none">Select Model</option>
-                        <option>Explorer</option>
-                        <option>Focus S</option>
-                        <option>Fusion SE</option>
-                        <option>Mustang</option>
-                    </select>
-                </div>
-                <div class="block-finder__form-control block-finder__form-control--select">
-                    <select name="engine" aria-label="Vehicle Engine" disabled>
-                        <option value="none">Select Engine</option>
-                        <option>Gas 1.6L 125 hp AT/L4</option>
-                        <option>Diesel 2.5L 200 hp AT/L5</option>
-                        <option>Diesel 3.0L 250 hp MT/L5</option>
-                    </select>
-                </div>
-                <button class="block-finder__form-control block-finder__form-control--button" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-    <div class="block-features block block-features--layout--top-strip">
-        <div class="container">
-            <ul class="block-features__list">
-                <li class="block-features__item">
-                    <div class="block-features__item-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48">
-                            <path d="M44.6,26.9l-1.2-5c0.3-0.1,0.6-0.4,0.6-0.7v-0.8c0-1.7-1.4-3.2-3.2-3.2h-5.7v-1.7c0-0.9-0.7-1.6-1.6-1.6H23.1l6.4-2.6
+            <div class="block-features block block-features--layout--top-strip">
+                <div class="container">
+                    <ul class="block-features__list">
+                        <li class="block-features__item">
+                            <div class="block-features__item-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48">
+                                    <path d="M44.6,26.9l-1.2-5c0.3-0.1,0.6-0.4,0.6-0.7v-0.8c0-1.7-1.4-3.2-3.2-3.2h-5.7v-1.7c0-0.9-0.7-1.6-1.6-1.6H23.1l6.4-2.6
 	c0.4-0.2,0.6-0.6,0.4-1c-0.2-0.4-0.6-0.6-1-0.4l-5.2,2.1c1.6-1,3.2-2.2,3.8-2.9c1.2-1.5,0.9-3.7-0.7-4.9c-1.5-1.2-3.7-0.9-4.9,0.7
 	l0,0c-0.9,1.1-2,4.3-2.7,6.5c-0.7-2.2-1.9-5.4-2.7-6.5l0,0c-1.2-1.5-3.4-1.8-4.9-0.7C10,5.5,9.7,7.7,10.9,9.2
 	c0.6,0.8,2.2,1.9,3.8,2.9l-5.2-2.1c-0.4-0.2-0.8,0-1,0.4c-0.2,0.4,0,0.8,0.4,1l6.4,2.6H4.8c-0.9,0-1.6,0.7-1.6,1.6v13.6
@@ -283,62 +272,62 @@
                                         <svg width="16" height="16">
                                             <path d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
         l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z" />
-                                        </svg>
-                                    </button>
-                                    <button class="product-card__action product-card__action--compare" type="button" aria-label="Add to compare">
-                                        <svg width="16" height="16">
-                                            <path d="M9,15H7c-0.6,0-1-0.4-1-1V2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1v12C10,14.6,9.6,15,9,15z" />
-                                            <path d="M1,9h2c0.6,0,1,0.4,1,1v4c0,0.6-0.4,1-1,1H1c-0.6,0-1-0.4-1-1v-4C0,9.4,0.4,9,1,9z" />
-                                            <path d="M15,5h-2c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1V6C16,5.4,15.6,5,15,5z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="product-card__image">
-                                    <div class="image image--type--product">
-                                        <a href="{{route('product_details')}}" class="image__body">
-                                            <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value->thumbnail}}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="status-badge status-badge--style--success product-card__fit status-badge--has-icon status-badge--has-text">
-                                        <div class="status-badge__body">
-                                            <div class="status-badge__icon"><svg width="13" height="13">
-                                                    <path d="M12,4.4L5.5,11L1,6.5l1.4-1.4l3.1,3.1L10.6,3L12,4.4z" />
-                                                </svg>
+                                                    </svg>
+                                                </button>
+                                                <button class="product-card__action product-card__action--compare" type="button" aria-label="Add to compare">
+                                                    <svg width="16" height="16">
+                                                        <path d="M9,15H7c-0.6,0-1-0.4-1-1V2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1v12C10,14.6,9.6,15,9,15z" />
+                                                        <path d="M1,9h2c0.6,0,1,0.4,1,1v4c0,0.6-0.4,1-1,1H1c-0.6,0-1-0.4-1-1v-4C0,9.4,0.4,9,1,9z" />
+                                                        <path d="M15,5h-2c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1V6C16,5.4,15.6,5,15,5z" />
+                                                    </svg>
+                                                </button>
                                             </div>
-                                            <div class="status-badge__text">Part Fit for 2011 Ford Focus S</div>
-                                            <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="Part&#x20;Fit&#x20;for&#x20;2011&#x20;Ford&#x20;Focus&#x20;S"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-card__info">
-                                    <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span>{{$value->sku}}</div>
-                                    <div class="product-card__name">
-                                        <div>
-                                            <a href="{{route('product_details')}}">{{$value->product_name}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-card__rating">
-                                        <div class="rating product-card__rating-stars">
-                                            <div class="rating__body">
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star"></div>
+                                            <div class="product-card__image">
+                                                <div class="image image--type--product">
+                                                    <a href="{{route('product_details')}}" class="image__body">
+                                                        <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value->thumbnail}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="status-badge status-badge--style--success product-card__fit status-badge--has-icon status-badge--has-text">
+                                                    <div class="status-badge__body">
+                                                        <div class="status-badge__icon"><svg width="13" height="13">
+                                                                <path d="M12,4.4L5.5,11L1,6.5l1.4-1.4l3.1,3.1L10.6,3L12,4.4z" />
+                                                            </svg>
+                                                        </div>
+                                                        <div class="status-badge__text">Part Fit for 2011 Ford Focus S</div>
+                                                        <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="Part&#x20;Fit&#x20;for&#x20;2011&#x20;Ford&#x20;Focus&#x20;S"></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="product-card__rating-label">4 on 3 reviews</div>
-                                    </div>
-                                </div>
-                                <div class="product-card__footer">
-                                    <div class="product-card__prices">
-                                        <div class="product-card__price product-card__price--current">₹ {{$value->price}}</div>
-                                    </div>
-                                    <button class="product-card__addtocart-icon" type="button" aria-label="Add to cart">
-                                        <svg width="20" height="20">
-                                            <circle cx="7" cy="17" r="2" />
-                                            <circle cx="15" cy="17" r="2" />
-                                            <path d="M20,4.4V5l-1.8,6.3c-0.1,0.4-0.5,0.7-1,0.7H6.7c-0.4,0-0.8-0.3-1-0.7L3.3,3.9C3.1,3.3,2.6,3,2.1,3H0.4C0.2,3,0,2.8,0,2.6
+                                            <div class="product-card__info">
+                                                <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span>{{$value->sku}}</div>
+                                                <div class="product-card__name">
+                                                    <div>
+                                                        <a href="{{route('product_details')}}">{{$value->product_name}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-card__rating">
+                                                    <div class="rating product-card__rating-stars">
+                                                        <div class="rating__body">
+                                                            <div class="rating__star rating__star--active"></div>
+                                                            <div class="rating__star rating__star--active"></div>
+                                                            <div class="rating__star rating__star--active"></div>
+                                                            <div class="rating__star rating__star--active"></div>
+                                                            <div class="rating__star"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-card__rating-label">4 on 3 reviews</div>
+                                                </div>
+                                            </div>
+                                            <div class="product-card__footer">
+                                                <div class="product-card__prices">
+                                                    <div class="product-card__price product-card__price--current">₹ {{$value->price}}</div>
+                                                </div>
+                                                <button class="product-card__addtocart-icon" type="button" aria-label="Add to cart">
+                                                    <svg width="20" height="20">
+                                                        <circle cx="7" cy="17" r="2" />
+                                                        <circle cx="15" cy="17" r="2" />
+                                                        <path d="M20,4.4V5l-1.8,6.3c-0.1,0.4-0.5,0.7-1,0.7H6.7c-0.4,0-0.8-0.3-1-0.7L3.3,3.9C3.1,3.3,2.6,3,2.1,3H0.4C0.2,3,0,2.8,0,2.6
         V1.4C0,1.2,0.2,1,0.4,1h2.5c1,0,1.8,0.6,2.1,1.6L5.1,3l2.3,6.8c0,0.1,0.2,0.2,0.3,0.2h8.6c0.1,0,0.3-0.1,0.3-0.2l1.3-4.4
         C17.9,5.2,17.7,5,17.5,5H9.4C9.2,5,9,4.8,9,4.6V3.4C9,3.2,9.2,3,9.4,3h9.2C19.4,3,20,3.6,20,4.4z" />
                                         </svg>
@@ -1915,38 +1904,40 @@
                                         <svg width="16" height="16">
                                             <path d="M14,15h-4v-2h3v-3h2v4C15,14.6,14.6,15,14,15z M13,3h-3V1h4c0.6,0,1,0.4,1,1v4h-2V3z M6,3H3v3H1V2c0-0.6,0.4-1,1-1h4V3z
 	 M3,13h3v2H2c-0.6,0-1-0.4-1-1v-4h2V13z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="product-card__image">
-                                    <div class="image image--type--product">
-                                        <a href="product-full.html" class="image__body">
-                                            <img class="image__tag" src="images/products/product-9-245x245.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-card__info">
-                                    <div class="product-card__name">
-                                        <div>
-                                            <a href="product-full.html">Brandix Manual Five Speed Gearbox</a>
+                                                </svg>
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="product-card__rating">
-                                        <div class="rating product-card__rating-stars">
-                                            <div class="rating__body">
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star rating__star--active"></div>
-                                                <div class="rating__star"></div>
+                                        <div class="product-card__image">
+                                            <div class="image image--type--product">
+                                                <a href="product-full.html" class="image__body">
+                                                    <img class="image__tag" src="images/products/product-9-245x245.jpg" alt="">
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="product-card__rating-label">4 on 6 reviews</div>
-                                    </div>
-                                </div>
-                                <div class="product-card__footer">
-                                    <div class="product-card__prices">
-                                        <div class="product-card__price product-card__price--current">$879.00</div>
+                                        <div class="product-card__info">
+                                            <div class="product-card__name">
+                                                <div>
+                                                    <a href="product-full.html">Brandix Manual Five Speed Gearbox</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-card__rating">
+                                                <div class="rating product-card__rating-stars">
+                                                    <div class="rating__body">
+                                                        <div class="rating__star rating__star--active"></div>
+                                                        <div class="rating__star rating__star--active"></div>
+                                                        <div class="rating__star rating__star--active"></div>
+                                                        <div class="rating__star rating__star--active"></div>
+                                                        <div class="rating__star"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-card__rating-label">4 on 6 reviews</div>
+                                            </div>
+                                        </div>
+                                        <div class="product-card__footer">
+                                            <div class="product-card__prices">
+                                                <div class="product-card__price product-card__price--current">$879.00</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1954,41 +1945,7 @@
                     </div>
                 </div>
             </div>
+            <div class="block-space block-space--layout--before-footer"></div>
         </div>
-    </div>
-    <div class="block-space block-space--layout--before-footer"></div>
-</div>
-<!-- site__body / end -->
-@endsection
-
-@push('js')
-<script>
-    $(document).ready(function(){
-        $('.data-btn').click(function(){
-            var id = $(this).data("id");
-            var html = []
-            
-            $.ajax({
-                url:"{{route('product.section')}}",
-                type:"post",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    data: id
-                },
-                success:function(response){
-                    var response_data = JSON.parse(response);
-
-                    $('#product-option-section').html('');
-
-                    response_data.forEach(element => {
-                        html.push('<div class="block-zone__carousel-item"><div class="product-card"><div class="product-card__actions-list"><button class="product-card__action product-card__action--quickview" type="button" aria-label="Quick view"><svg width="16" height="16"><path d="M14,15h-4v-2h3v-3h2v4C15,14.6,14.6,15,14,15z M13,3h-3V1h4c0.6,0,1,0.4,1,1v4h-2V3z M6,3H3v3H1V2c0-0.6,0.4-1,1-1h4V3zM3,13h3v2H2c-0.6,0-1-0.4-1-1v-4h2V13z" /></svg></button><button class="product-card__action product-card__action--wishlist" type="button" aria-label="Add to wish list"><svg width="16" height="16"><path d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z" /></svg></button><button class="product-card__action product-card__action--compare" type="button" aria-label="Add to compare"><svg width="16" height="16"><path d="M9,15H7c-0.6,0-1-0.4-1-1V2c0-0.6,0.4-1,1-1h2c0.6,0,1,0.4,1,1v12C10,14.6,9.6,15,9,15z" /><path d="M1,9h2c0.6,0,1,0.4,1,1v4c0,0.6-0.4,1-1,1H1c-0.6,0-1-0.4-1-1v-4C0,9.4,0.4,9,1,9z" /><path d="M15,5h-2c-0.6,0-1,0.4-1,1v8c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1V6C16,5.4,15.6,5,15,5z" /></svg></button></div><div class="product-card__image"><div class="image image--type--product"><a href="{{route("product_details")}}" class="image__body"><img class="image__tag" src="{{URL::TO("front/")}}/images/Product_image/    '+element.thumbnail+'" alt=""></a></div><div class="status-badge status-badge--style--success product-card__fit status-badge--has-icon status-badge--has-text"><div class="status-badge__body"><div class="status-badge__icon"><svg width="13" height="13"><path d="M12,4.4L5.5,11L1,6.5l1.4-1.4l3.1,3.1L10.6,3L12,4.4z" /></svg></div><div class="status-badge__text">Part Fit for 2011 Ford Focus S</div><div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="Part&#x20;Fit&#x20;for&#x20;2011&#x20;Ford&#x20;Focus&#x20;S"></div></div></div></div><div class="product-card__info"><div class="product-card__meta"><span class="product-card__meta-title">SKU:</span>"'+element.sku+'"</div><div class="product-card__name"><div><div class="product-card__badges"><div class="tag-badge tag-badge--sale">sale</div><div class="tag-badge tag-badge--new">new</div><div class="tag-badge tag-badge--hot">hot</div></div><a href="{{route("product_details")}}">"'+element.product_name+'"</a></div></div><div class="product-card__rating"><div class="rating product-card__rating-stars"><div class="rating__body"><div class="rating__star rating__star--active"></div><div class="rating__star rating__star--active"></div><div class="rating__star rating__star--active"></div><div class="rating__star rating__star--active"></div><div class="rating__star"></div></div></div><div class="product-card__rating-label">4 on 3 reviews</div></div></div><div class="product-card__footer"><div class="product-card__prices"><div class="product-card__price product-card__price--current">"'+element.price+'"</div></div><button class="product-card__addtocart-icon" type="button" aria-label="Add to cart"><svg width="20" height="20"> <circle cx="7" cy="17" r="2" /><circle cx="15" cy="17" r="2" /><path d="M20,4.4V5l-1.8,6.3c-0.1,0.4-0.5,0.7-1,0.7H6.7c-0.4,0-0.8-0.3-1-0.7L3.3,3.9C3.1,3.3,2.6,3,2.1,3H0.4C0.2,3,0,2.8,0,2.6V1.4C0,1.2,0.2,1,0.4,1h2.5c1,0,1.8,0.6,2.1,1.6L5.1,3l2.3,6.8c0,0.1,0.2,0.2,0.3,0.2h8.6c0.1,0,0.3-0.1,0.3-0.2l1.3-4.4C17.9,5.2,17.7,5,17.5,5H9.4C9.2,5,9,4.8,9,4.6V3.4C9,3.2,9.2,3,9.4,3h9.2C19.4,3,20,3.6,20,4.4z" /></svg></button></div></div></div>');
-                    });
-
-                    $('#product-option-section').html(html);
-                    console.log(response_data);
-                }
-            })
-        })
-    })
-</script>
-@endpush
+        <!-- site__body / end -->
+        @endsection

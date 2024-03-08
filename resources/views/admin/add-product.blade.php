@@ -65,7 +65,7 @@
                           <div class="row">
                             <div class="col-md-12 mb-5">
                               <select name="Subcategory" id="subcatagory" class="form-control">
-                                <option value="" selected disabled>Select Category</option>
+                                <option value="" selected disabled>Select sub_Category</option>
                               </select>
                               @error('Category')
                                 <span class="text-danger">{{$message}}</span>
@@ -77,7 +77,7 @@
                           <div class="row">
                             <label class="form-label col-md-2 text-right">Product Name : </label>
                             <div class="col-md-10">
-                              <input type="text" class="form-control" id="product" placeholder="Product Name" name="Product Name" value="{{old('Product_Name')}}">
+                              <input type="text" class="form-control" id="product" placeholder="Product Name" name="Product Name"   value="{{old('Product_Name')}}">
                               @error('Product_Name')
                                 <span class="text-danger">{{$message}}</span>
                               @enderror
@@ -87,6 +87,7 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="form-group has-feedback">
                           <div class="row">
                             <label class="form-label col-md-2 text-right">Short Discription :</label>
@@ -317,7 +318,7 @@
               }
             }
           })
-        })
+        });
 
         $('#Category').change(function(){
           var id = $(this).val();
@@ -331,13 +332,15 @@
             success:function(response){
               var subdata = [];
               
-              if (response == '') {
+              if(response == '') {
                 subdata += "<option value selected disabled>Add Sub-Category First</option>";
                 $('#subcatagory').html(subdata);
               }else{
                 
+                subdata += "<option value selected disabled>Select Sub-Category</option>";
+
                 response.forEach(element => {
-                  subdata += "<option value selected disabled>Select Sub-Category</option>";
+                
                   subdata += "<option value='"+element.id+"'>"+element.subcatagory_name+"</option>";
                 });
                  

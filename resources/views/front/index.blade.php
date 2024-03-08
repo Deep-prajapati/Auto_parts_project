@@ -33,33 +33,22 @@
                             </select>
                         </div>
                         <div class="block-finder__form-control block-finder__form-control--select">
-                            <select name="make" aria-label="Vehicle Make" disabled>
-                                <option value="none">Select Make</option>
-                                <option>Audi</option>
-                                <option>BMW</option>
-                                <option>Ferrari</option>
-                                <option>Ford</option>
-                                <option>KIA</option>
-                                <option>Nissan</option>
-                                <option>Tesla</option>
-                                <option>Toyota</option>
+                            <select name="make" id="company" aria-label="Vehicle Make" disabled>
+                            <option value="none">Select Make</option>
+                                @foreach($company as $value)
+                                    <option value="{{$value->id}}">{{$value->company_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="block-finder__form-control block-finder__form-control--select">
-                            <select name="model" aria-label="Vehicle Model" disabled>
+                            <select name="model" aria-label="Vehicle Model" name="model_id" id="model" disabled>
                                 <option value="none">Select Model</option>
-                                <option>Explorer</option>
-                                <option>Focus S</option>
-                                <option>Fusion SE</option>
-                                <option>Mustang</option>
                             </select>
                         </div>
                         <div class="block-finder__form-control block-finder__form-control--select">
-                            <select name="engine" aria-label="Vehicle Engine" disabled>
-                                <option value="none">Select Engine</option>
-                                <option>Gas 1.6L 125 hp AT/L4</option>
-                                <option>Diesel 2.5L 200 hp AT/L5</option>
-                                <option>Diesel 3.0L 250 hp MT/L5</option>
+                            <select name="engine" aria-label="Vehicle Engine"  id="engine" disabled>
+                            <option value="none">Select Engine</option>
+                               
                             </select>
                         </div>
                         <button class="block-finder__form-control block-finder__form-control--button" type="submit">Search</button>
@@ -295,7 +284,7 @@
                                             </div>
                                             <div class="product-card__image">
                                                 <div class="image image--type--product">
-                                                    <a href="{{route('product_details')}}" class="image__body">
+                                                    <a href="{{route('product_details',$value->slug)}}" class="image__body">
                                                         <img class="image__tag" src="{{URL::TO('front/')}}/images/Product_image/{{$value->thumbnail}}" alt="">
                                                     </a>
                                                 </div>
@@ -305,6 +294,7 @@
                                                                 <path d="M12,4.4L5.5,11L1,6.5l1.4-1.4l3.1,3.1L10.6,3L12,4.4z" />
                                                             </svg>
                                                         </div>
+
                                                         <div class="status-badge__text">Part Fit for 2011 Ford Focus S</div>
                                                         <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="Part&#x20;Fit&#x20;for&#x20;2011&#x20;Ford&#x20;Focus&#x20;S"></div>
                                                     </div>
@@ -314,7 +304,7 @@
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span>{{$value->sku}}</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('product_details')}}">{{$value->product_name}}</a>
+                                                        <a href="{{URL::TO('/details')}}/{{$value->slug}}">{{$value->product_name}}</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__rating">
@@ -1992,4 +1982,77 @@
             <div class="block-space block-space--layout--before-footer"></div>
         </div>
         <!-- site__body / end -->
+        @push('javascript')
+
+  <script>
+    $(document).ready(function(){
+      $('#company').change(function(){
+        var id = $(this).val();
+            console.log(id);
+          $.ajax({
+            url:"{{route('company_ajax')}}",
+            type:'POST',
+            data:{
+              "_token": "{{ csrf_token() }}",
+              data: id
+            },
+            success:function(response){
+                console.log(response);
+              var subdata = [];
+              
+              if(response == '') {
+                subdata += "<option value selected disabled>Add model First</option>";
+                $('#model').html(subdata);
+              }else{
+                
+                subdata += "<option value selected disabled>Select model</option>";
+                
+                response.forEach(element => {
+                
+                  subdata += "<option value='"+element.id+"'>"+element.model_name+"</option>";
+                });
+                 
+                $('#model').html(subdata);
+                
+              }
+            }
+          })
+      })
+
+      $('#model').change(function(){
+        var id = $(this).val();
+            console.log(id);
+          $.ajax({
+            url:"{{route('model_ajax')}}",
+            type:'POST',
+            data:{
+              "_token": "{{ csrf_token() }}",
+              data: id
+            },
+            success:function(response){
+                console.log(response);
+              var subdata = [];
+              
+              if(response == '') {
+                subdata += "<option value selected disabled>Add model First</option>";
+                $('#model').html(subdata);
+              }else{
+                
+                subdata += "<option value selected disabled>Select engine</option>";
+                
+                response.forEach(element => {
+                
+                  subdata += "<option value='"+element.id+"'>"+element.engine_name+"</option>";
+                });
+                 
+                $('#engine').html(subdata);
+                
+              }
+            }
+          })
+      })
+    })
+  </script>
+ 
+@endpush
         @endsection

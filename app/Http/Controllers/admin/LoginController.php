@@ -13,8 +13,16 @@ use App\Models\catagory;
 use App\Models\Subcatagory;
 use App\Models\Product_details;
 use App\Models\Products;
+use App\Models\Company;
+use App\Models\Models;
+use App\Models\Engine;
+
 use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\MockObject\ReturnValueNotConfiguredException;
+//use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
+
+
 
 class LoginController extends Controller
 {
@@ -57,8 +65,8 @@ class LoginController extends Controller
     }
 
     function dashboard(){
-        $id = Auth::guard('admin')->id();
-        $data = Admin::where('id',$id)->get();
+        // $id = Auth::guard('admin')->id();
+        // $data = Admin::where('id',$id)->get();
         return view('admin.dashboard');
     }
 
@@ -253,6 +261,12 @@ class LoginController extends Controller
 
         // images....!
 
+        //slug making......
+
+        $demo = slug($request->Product_Name);
+        
+        //slug end......
+
         // Section........!
 
         $original_array = $request->section;
@@ -264,6 +278,7 @@ class LoginController extends Controller
 
         $data = new Product_details;
         $data->product_name = $request->Product_Name;
+        $data->slug = $demo;
         $data->short_dis = $request->Short_Discription;
         $data->discription = $request->discription;
         $data->features = $request->features;
@@ -287,7 +302,6 @@ class LoginController extends Controller
         $product->save();
 
         // Inserting data in product.........!
-        
         return redirect()->route('admin.add-product')->with('message', 'Data Inserted Successfully!');
     }
 
@@ -331,4 +345,92 @@ class LoginController extends Controller
 
         return $subcatagory;
     }
+
+    function company(){
+        $company = Company::all();
+        //dd($company);
+        return view('admin.company', compact('company'));
+    }
+
+    function company_submit(Request $request){
+        $request->validate([
+            'company_name' => 'required',
+        ]);
+        $data=new Company;
+        $data->company_name=$request->company_name;
+        $data->save();
+         return redirect()->route('admin.company')->with('message', 'Data Inserted Successfully!');
+
+    }
+
+    function model(){
+        $company = Company::all();
+        $model = Models::all();
+        $join = company::join('models','companies.id','=','models.company_id')->get();
+        // dd($join);
+        return view('admin.model', compact('company','model','join'));
+
+        //return view('admin.model');
+    }
+
+    function model_submit(Request $request){
+        $request->validate([
+            'company_id' => 'required',
+            'model_name' => 'required'
+        ]);
+        $data=new models;
+        $data->company_id=$request->company_id;
+        $data->model_name=$request->model_name;
+        $data->save();
+
+
+        $company = Company::all();
+
+        $model = Models::all();
+
+        
+        $join = company::join('models','companies.id','=','models.company_id')->get();
+        //dd($data);
+
+        return view('admin.model', compact('company','model','join'))->with('message', 'Data Inserted Successfully!');
+         //return redirect()->route('admin.model')->with('message', 'Data Inserted Successfully!');
+        
+    }
+
+    function engine(){
+        $company = Company::all();
+        $model = Models::all();
+        $engine = Engine::all();
+        $join = Models::join('engines','models.id','=','engines.model_id')->get();
+        return view('admin.engine', compact('company','model','engine','join'));
+    }
+
+    function engine_submit(Request $request){
+        $request->validate([
+            'model_id' => 'required',
+            'engine_name' => 'required'
+        ]);
+
+        $data=new Engine;
+        $data->model_id=$request->model_id;
+        $data->engine_name=$request->engine_name;
+        $data->save();
+
+        $company = Company::all();
+        $model = models::all();
+        $engine =Engine::all();
+        $join = Models::join('engines','models.id','=','engines.model_id')->get();
+        return view('admin.engine', compact('company','model','engine','join'))->with('message', 'Data Inserted Successfully!');
+    }
+
+    function company_ajax(Request $request){
+        $request->validate([
+            'data' => 'required'
+        ]);
+
+        $model = Models::where('company_id', $request->data)->get();
+        
+        return $model;
+    }
+    
 }

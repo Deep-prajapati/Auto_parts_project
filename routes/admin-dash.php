@@ -30,7 +30,7 @@ use App\Http\Controllers\admin\LoginController;
 
     Route::get('Sub-Catagory',[LoginController::class, 'subcatagory'])->name('Sub-Catagory');
     Route::post('Sub-Catagory' , [LoginController::class , 'Sub_Catagory'])->name('submit.Sub-Catagory');
-
+    
     Route::get('edit-catagory/{id}', [LoginController::class, 'edit_catagory'])->name('edit-catagory');
     Route::post('edit-catagory/{id}', [LoginController::class, 'sumbit_edit_catagory'])->name('submit.edit-catagory');
 
@@ -45,5 +45,23 @@ use App\Http\Controllers\admin\LoginController;
 
     Route::post('qwertyui' , [LoginController::class , 'product_ajax'])->name('product_ajax');
     Route::post('qawsedrf' , [LoginController::class , 'catagory_ajax'])->name('catagory_ajax');
+
+    Route::get('company',[LoginController::class, 'company'])->name('company');
+    Route::post('company',[LoginController::class, 'company_submit'])->name('submit.company_name');
+
+    Route::get('model',[LoginController::class, 'model'])->name('model');
+    Route::post('model',[LoginController::class, 'model_submit'])->name('submit.model');
+
+    Route::get('engine',[LoginController::class, 'engine'])->name('engine');
+    Route::post('engine',[LoginController::class, 'engine_submit'])->name('submit.engine');
+
+    Route::post('abc' , [LoginController::class , 'company_ajax'])->name('company_ajax');
+
+
+
+
+
+
+    
 
 ?>

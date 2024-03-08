@@ -57,6 +57,9 @@
           <ul class="treeview-menu">
             <li><a href="{{route('admin.Catagory')}}"><i class="fa fa-circle-o"></i>Main category</a></li>
             <li><a href="{{route('admin.Sub-Catagory')}}"><i class="fa fa-circle-o"></i>Sub Category</a></li>
+            <li><a href="{{route('admin.company')}}"><i class="fa fa-circle-o"></i>Company_name</a></li>
+            <li><a href="{{route('admin.model')}}"><i class="fa fa-circle-o"></i>Model</a></li>
+            <li><a href="{{route('admin.engine')}}"><i class="fa fa-circle-o"></i>Engine</a></li>
           </ul>
         </li>
         <li class="treeview">

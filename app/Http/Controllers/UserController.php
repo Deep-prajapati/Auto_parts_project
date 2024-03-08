@@ -82,5 +82,4 @@ class UserController extends BaseController
         
         return view('front.category_details',compact('product'));
     }
-    
 }

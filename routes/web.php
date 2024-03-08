@@ -32,6 +32,8 @@ Route::post('def' , [UserController::class, 'model_ajax'])->name('model_ajax');
 Route::get('category_details' , [UserController::class, 'category_details'])->name('category_details');
 
 
+Route::post('product-section' , [UserController::class, 'product_section'])->name('product.section');
+
 Route::group(['prefix'=>'admin','as'=>'admin.'],function(){
     require 'admin-login.php';
     Route::group(['middleware' => 'AdminAuth'], function(){

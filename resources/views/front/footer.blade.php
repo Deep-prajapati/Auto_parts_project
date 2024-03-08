@@ -1245,6 +1245,7 @@
     <script src="{{URL::TO('front/')}}/vendor/select2/js/select2.min.js"></script>
     <script src="{{URL::TO('front/')}}/js/number.js"></script>
     <script src="{{URL::TO('front/')}}/js/main.js"></script>
+    @stack('js')
     @stack('javascript')
 
 </body>
